@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "mlx.h"
 
-void		ft_line(t_data *data, int xi, int xf, int yi, int yf, int color)
+void		ft_line(t_data *data, int xi, int yi, int xf, int yf, int color)
 {
 	int				x;
 	int				y;
