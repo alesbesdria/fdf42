@@ -1,3 +1,4 @@
+#include "fdf.h"
 #include <stdio.h>
 #include "mlx.h"
 
@@ -5,7 +6,6 @@ int			main(void)
 {
 	void	*mlx;
 	void	*win;
-	void	
 	int		x;
 	int		y;
 
