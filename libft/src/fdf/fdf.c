@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <mlx.h>
+#include "mlx.h"
 
 int		main(void)
 {
@@ -7,6 +7,7 @@ int		main(void)
 	void	*win;
 	int		x;
 	int		y;
+//	int		my_key_funct;
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 400, 400, "mlx 42");
@@ -23,9 +24,9 @@ int		main(void)
 		y++;
 	}
 
-	mlx_hook(win, my_key_funct, 0);
-	int		my_key_funct(int keycode, void *param);
-	printf("key event %d\n", keycode);
+//	mlx_hook(win, my_key_funct, 0);
+//	int		my_key_funct(int keycode, void *param);
+//	printf("key event %d\n", keycode);
 	mlx_loop(mlx);
 	return (0);
 }
