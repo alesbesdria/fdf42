@@ -56,6 +56,18 @@ void		ft_bline(t_data *data,int xi,int yi,int xf,int yf, int color)
 	}
 }
 
+void		map_read()
+{
+	int		tab[];
+	int		len;
+	int		x;
+	int		y;
+	int		z;
+
+	ft_strsplit();
+	ft_gnl();
+}
+
 int			main(void)
 {
 	t_data	data;
