@@ -1,47 +1,54 @@
 //#include "libft.h"
-#include "get_next_line.h"
 #include <fcntl.h>
+#include "map_read.h"
+#include "get_next_line.h"
 
-void		map_read()
+void		map_read(t_file *mymap, t_l *mylist)
 {
-	int		n;
+	t_z		*curr;
 	int		x;
 	int		y;
 	int		z;
-	int		i;
 	int		fd;
 	char	*line;
 	char	**tab;
 
-
+	y = 0;
 	line = NULL;
-	fd = open("42.fdf", O_RDONLY);
+	fd = open("maptestlili.fdf", O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
 		tab = ft_strsplit(line, ' '); //char const *s, char c
-		i = 0;
-		while (tab[n][i] != '\0')
+		x = 0;
+		while (tab[x] != 0)
 		{
-			while (tab[n][i] != '\0')
-			{
-				z = ft_atoi(tab[n][i]);
-				x = ft_atoi(tab[i]);
-				printf("%d\n", x);
-//				printf("%s\n", tab[i]);
-				i++;
-			}
-			y = ft_atoi(tab[n]);
-				printf("%d\n", y);
-			n++;
+			z = ft_atoi(tab[x]);
+			curr = malloc(sizeof(t_z));
+			curr->value = z;
+			curr->next = mylist->first;
+			mylist->first = curr;
+
+//			printf("x = %d\n", x);
+//			printf("z = %d\n", z);
+//			printf("%s\n", tab[x]);
+			x++;
 		}
+//		printf("y = %d\n", y);
 //		printf("%s\n", line);
+		y++;
+		free(line);
 	}
+	mymap->nbcol = y;
+	mymap->nbline = x;
 	close(fd);
 }
 
 //int		main(int argc, char ** argv)
 int		main(void)
 {
-	map_read();
+	t_l			*mylist;
+	t_file		*mymap;
+	mylist = initialisation();
+	map_read(mymap, mylist);
 	return (0);
 }
