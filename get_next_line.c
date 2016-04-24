@@ -62,7 +62,6 @@ int			get_next_line(int const fd, char **line)
 		mylist->first = curr;
 		curr->filenbcharread = 0;
 	}
-	*line = malloc(1);
-	line[0][0] = '\0';
+	*line = ft_memalloc(BUFF_SIZE + 1);
 	return (get_line(fd, line, curr, 0));
 }
