@@ -9,21 +9,36 @@ int			**createtable(int nbline, int nbcol)
 	int		i;
 	int		**table1;
 	int		*table2;
-	printf("a\n");
 
 	table1 = (int **) malloc(sizeof(int*) * nbline);
 	table2 = (int *) malloc(sizeof(int) * nbcol * nbline);
-	printf("b\n");
 	i = 0;
 	while  (i < nbline)
 	{
-		printf("c\n");
 		table1[i] = &table2[i * nbcol];
-		printf("nb column : %d\n", nbcol);
 		i++;
 	}
-	printf("e\n");
 	return (table1);
+}
+
+void	createmap(t_l *mylist, t_file *mymap)
+{
+	t_z		*curr;
+	int		i;
+	int		j;
+
+	curr = mylist->first;
+	mymap->map = createtable(mymap->nbline, mymap->nbcol);
+	i = mymap->nbline - 1;
+	while (i >= 0)
+	{
+		j = mymap->nbcol - 1;
+		mymap->map[i][j] = curr->value;
+		curr = curr->next;
+		printf("value : %d j : %d\n", curr->value, j);
+		j--;
+	}
+	i--;
 }
 
 void		map_read(t_file *mymap, t_l *mylist)
@@ -80,5 +95,7 @@ int		main(void)
 	mylist = initialisation();
 	map_read(&mymap, mylist);
 	map_print(mylist);
+	createtable(mymap.nbline, mymap.nbcol);
+	createmap(mylist, &mymap);
 	return (0);
 }
