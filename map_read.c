@@ -29,12 +29,15 @@ void	createmap(t_l *mylist, t_file *mymap)
 	while (i >= 0)
 	{
 		j = mymap->nbcol - 1;
-		mymap->map[i][j] = curr->value;
-		curr = curr->next;
-		printf("value : %d j : %d\n", curr->value, j);
-		j--;
+		while (j >= 0)
+		{
+			mymap->map[i][j] = curr->value;
+//			printf("value : %d j : %d\n", curr->value, j);
+			curr = curr->next;
+			j--;
+		}
+		i--;
 	}
-	i--;
 }
 
 void		map_read(t_file *mymap, t_l *mylist)
@@ -49,7 +52,7 @@ void		map_read(t_file *mymap, t_l *mylist)
 // colonne = x, ligne = y;
 	y = 0;
 	line = NULL;
-	fd = open("maptestlili.fdf", O_RDONLY);
+	fd = open("42.fdf", O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
 		tab = ft_strsplit(line, ' ');
@@ -78,7 +81,7 @@ void	map_print(t_l *mylist)
 	curr = mylist->first;
 	while (curr != NULL)
 	{
-		printf("value : %d\n", curr->value);
+//		printf("value : %d\n", curr->value);
 		curr = curr->next;
 	}
 }
@@ -94,6 +97,6 @@ int		main(void)
 	map_print(mylist);
 	createtable(mymap.nbline, mymap.nbcol);
 	createmap(mylist, &mymap);
+	printf("salut\n");
 	return (0);
-}
-*/
+}*/
