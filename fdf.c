@@ -110,10 +110,14 @@ int			main(void)
 	t_data	*data;
 	int		pixelnext_x;
 	int		pixelnext_y;
+	int		pixelnext_xi;
+	int		pixelnext_yi;
 	int		i;
 	int		j;
 	int		newbegin_x;
 	int		newbegin_y;
+	int		newbegin_xi;
+	int		newbegin_yi;
 //	int		pixelnext_y;
 
 	i = 0;
@@ -138,21 +142,46 @@ int			main(void)
 //	pixelnext_y = data->begin_map_y + data->step_y;
 	newbegin_x = data->begin_map_x;
 	newbegin_y = data->begin_map_y;
-	while (i < mymap->nbcol - 1)
+	while (j < mymap->nbline - 1)
 	{
-		ft_bline(data, newbegin_x, newbegin_y, pixelnext_x, newbegin_y, 0x00FF00FF);
-		ft_bline(data, newbegin_x, newbegin_y, newbegin_x, pixelnext_y, 0x00FF00FF);
-		while (j < mymap->nbline - 1)
+		i = 0;
+		if (j == 0)
 		{
-			ft_bline(data, newbegin_x, newbegin_y, pixelnext_x, newbegin_y, 0x00FF00FF);
-			ft_bline(data, newbegin_x, newbegin_y, newbegin_x, pixelnext_y, 0x00FF00FF);
-			j++;
+			newbegin_xi = data->begin_map_x;
+			newbegin_yi = data->begin_map_y;
+			pixelnext_xi = data->begin_map_x + data->step_x;
+			pixelnext_yi = data->begin_map_y + data->step_y;
 		}
-		newbegin_x = newbegin_x + data->step_x;
-		pixelnext_x = pixelnext_x + data->step_x;
-		if (i == mymap->nbcol - 2)
-			ft_bline(data, newbegin_x, newbegin_y, newbegin_x, pixelnext_y, 0x00FF00FF);
-		i++;
+		newbegin_xi = newbegin_x;
+		newbegin_yi = newbegin_y;
+		pixelnext_xi = pixelnext_x;
+		pixelnext_yi = pixelnext_y;
+		while (i < mymap->nbcol - 1)
+		{
+			ft_bline(data, newbegin_xi, newbegin_yi, pixelnext_xi, newbegin_yi, 0x00FF00FF);
+			ft_bline(data, newbegin_xi, newbegin_yi, newbegin_xi, pixelnext_yi, 0x00FF00FF);
+			newbegin_xi = newbegin_xi + data->step_x;
+			pixelnext_xi = pixelnext_xi + data->step_x;
+			if (i == mymap->nbcol - 2)
+				ft_bline(data, newbegin_xi, newbegin_yi, newbegin_xi, pixelnext_yi, 0x00FF00FF);
+			if (j == mymap->nbline - 2)
+				ft_bline(data, newbegin_x, newbegin_y, pixelnext_x, newbegin_y, 0x00FF00FF);
+			i++;
+		}
+		newbegin_y = newbegin_y + data->step_y;
+		pixelnext_y = pixelnext_y + data->step_y;
+		if (j == mymap->nbline - 2)
+		{
+			i = 0;
+			while (i < mymap->nbcol - 1)
+			{
+				ft_bline(data, newbegin_x, newbegin_y, pixelnext_x, newbegin_y, 0x00FF00FF);
+				newbegin_x = newbegin_x + data->step_x;
+				pixelnext_x = pixelnext_x + data->step_x;
+				i++;
+			}
+		}
+		j++;
 	}
 	//	mlx_pixel_put(data.ptr_mlx, data.ptr_win, 200, 200, 0x00FFFFFF);
 //	ft_line(&data, 250, 250, 350, 350, 0x00FF00FF);
