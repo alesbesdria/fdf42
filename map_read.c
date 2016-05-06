@@ -1,8 +1,4 @@
-//#include "libft.h"
-#include <fcntl.h>
-#include <stdio.h>
 #include "map_read.h"
-#include "get_next_line.h"
 
 int			**createtable(int nbline, int nbcol)
 {
@@ -88,6 +84,7 @@ void	map_print(t_l *mylist)
 }
 
 //int		main(int argc, char ** argv)
+/*
 int		main(void)
 {
 	t_l			*mylist;
@@ -99,3 +96,4 @@ int		main(void)
 	createmap(mylist, &mymap);
 	return (0);
 }
+*/

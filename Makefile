@@ -1,10 +1,11 @@
-NAME += MAPREAD
+NAME += FDF
 DIRC += ./
 FLAG += -Wall -Wextra -Werror -O3
 INDS += -I./
 INDS += -I./Libft/
 INDS += -I/usr/X11/include
 SRCA += ./Libft/libft.a
+SRCS += fdf.c
 SRCS += map_read.c
 SRCS += get_next_line.c
 LSTC += $(patsubst %,$(DIRC)%,$(SRCS))
