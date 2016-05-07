@@ -1,4 +1,4 @@
-#ifndef				MM_MATH_H
+#ifndef MM_MATH_H
 #define MM_MATH_H
 
 #include <stdlib.h>
@@ -8,7 +8,7 @@
 #include "libft2.h"
 #include "mm_basic.h"
 
-#define pi			3.14159265359
+#define pi 3.14159265359
 
 typedef struct		s_vector3
 {
