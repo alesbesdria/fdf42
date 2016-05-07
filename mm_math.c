@@ -191,7 +191,7 @@ t_vector2			transform_vector2(t_vector2 vector, t_matrix transform)
 
 double				dist_squared_vector2(t_vector2 value1, t_vector2 value2)
 {
-	return (sqrt(dist_squared_vector2(value1, value2)));
+	return (sqrt(dist_vector2(value1, value2)));
 }
 
 double				dist_vector2(t_vector2 value1, t_vector2 value2)
@@ -422,7 +422,7 @@ t_vector3			normalize2_vector3(t_vector3 vector)
 
 double				dist_squared_vector3(t_vector3 value1, t_vector3 value2)
 {
-	return (sqrt(dist_squared_vector3(value1, value2)));
+	return (sqrt(dist_vector3(value1, value2)));
 }
 
 double				dist_vector3(t_vector3 value1, t_vector3 value2)

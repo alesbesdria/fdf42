@@ -1,13 +1,13 @@
 #include "map_read.h"
 
-t_vector3			**createtable(int nbline, int nbcol)
+int			**createtable(int nbline, int nbcol)
 {
 	int		i;
-	t_vector3		**table1;
-	t_vector3		*table2;
+	int		**table1;
+	int		*table2;
 
-	table1 = (t_vector3 **) malloc(sizeof(void *) * nbline);
-	table2 = (t_vector3 *) malloc(sizeof(t_vector3) * nbcol * nbline);
+	table1 = (int **) malloc(sizeof(int*) * nbline);
+	table2 = (int *) malloc(sizeof(int) * nbcol * nbline);
 	i = 0;
 	while  (i < nbline)
 	{
@@ -20,22 +20,18 @@ t_vector3			**createtable(int nbline, int nbcol)
 void	createmap(t_l *mylist, t_file *mymap)
 {
 	t_z		*curr;
-	double	center_x;
-	double	center_y;
 	int		i;
 	int		j;
 
 	curr = mylist->first;
 	mymap->map = createtable(mymap->nbline, mymap->nbcol);
-	center_x = (float) (mymap->nbcol - 1) / 2;
-	center_y = (float) (mymap->nbline - 1) / 2;
 	i = mymap->nbline - 1;
 	while (i >= 0)
 	{
 		j = mymap->nbcol - 1;
 		while (j >= 0)
 		{
-			mymap->map[i][j] = set_vector3(j - center_x, i - center_y, curr->value);
+			mymap->map[i][j] = curr->value;
 //			printf("value : %d j : %d\n", curr->value, j);
 			curr = curr->next;
 			j--;
