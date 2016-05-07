@@ -51,7 +51,7 @@ void				draw_point_device(t_data *data, t_vector2 point)
 		mlx_pixel_put2(data, point.x, point.y, color);
 	}
 }
-
+/*
 t_mesh				*new_cube(char *name)
 {
 	t_mesh			*my_cube;
@@ -124,7 +124,7 @@ void 			render(t_data *data, t_meshes *meshes)
 //			draw_point_device (data, projectedPoint);
 			tv[indexvertices] = projectedPoint;
 		}
-/*
+
 		fdf_bline(data, tv[0].x, tv[0]. y,tv[1].x, tv[1].y, 0x00FFFFFF);
 		fdf_bline(data, tv[1].x, tv[1]. y,tv[3].x, tv[3].y, 0x00FFFFFF);
 		fdf_bline(data, tv[3].x, tv[3]. y,tv[2].x, tv[2].y, 0x00FFFFFF);
@@ -137,7 +137,7 @@ void 			render(t_data *data, t_meshes *meshes)
 		fdf_bline(data, tv[1].x, tv[1]. y,tv[5].x, tv[5].y, 0x00FFFFFF);
 		fdf_bline(data, tv[2].x, tv[2]. y,tv[7].x, tv[7].y, 0x00FFFFFF);
 		fdf_bline(data, tv[3].x, tv[3]. y,tv[6].x, tv[6].y, 0x00FFFFFF);
-*/
+
 	}
 }
 
@@ -160,7 +160,7 @@ void fdf_bline(t_data *data,int xi,int yi,int xf,int yf, int color)
 		if (data->put_in_canvas)
 			mlx_pixel_put2(data, xi, yi, color);
 		else
-			mlx_pixel_put(data->mlx_ptr, data->mlx_win, xi, yi, color);
+			mlx_pixel_put(data->ptr_mlx, data->ptr_win, xi, yi, color);
 		if ((xi == xf) && (yi == yf)) break;
 		e2 = 2 * err;
 		if (e2 > -dy)
@@ -190,7 +190,7 @@ void draw_square(t_data *data,int xi,int yi,int xf,int yf, int color)
 			if (data->put_in_canvas)
 				mlx_pixel_put2(data, i, j, color);
 			else
-				mlx_pixel_put(data->mlx_ptr, data->mlx_win, i, j, color);
+				mlx_pixel_put(data->ptr_mlx, data->ptr_win, i, j, color);
 			j++;
 		}
 		i++;
@@ -203,7 +203,7 @@ void			print_buffer(t_data *data)
 
 	result = mlx_put_image_to_window (data->mlx_ptr, data->mlx_win,
 		data->img[data->front_buffer], 1, 0);
-}
+}*/
 
 int			clip_v2(t_data *data, t_vector2 *pj1, t_vector2 *pj2)
 {
@@ -274,7 +274,7 @@ int			clip_v2(t_data *data, t_vector2 *pj1, t_vector2 *pj2)
 	}
 	return (0);
 }
-
+/*
 void			print_fdf2(t_data *data)
 {
 	int			i;
@@ -346,7 +346,7 @@ print_fdf2(data);
 			}
 		}
 	}
-}
+}*/
 
 void			render_fdf(t_data *data)
 {

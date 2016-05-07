@@ -8,6 +8,7 @@ SRCA += ./Libft/libft.a
 SRCS += fdf.c
 SRCS += map_read.c
 SRCS += mm_math.c
+SRCS += mm_graph.c
 SRCS += trace_line.c
 SRCS += libft2.c
 SRCS += get_next_line.c
