@@ -284,11 +284,11 @@ void			print_fdf2(t_data *data)
 	char		*s;
 
 	printf("Table des vecteurs\n");
-	for (i = 0; i < data->tf->nb_rows; i++)
+	for (i = 0; i < data->tf->nbline; i++)
 	{
-		for (j = 0; j < data->tf->nb_columns; j++)
+		for (j = 0; j < data->tf->nbcol; j++)
 		{
-			tv1 = data->tf->tvect[i][j];
+			tv1 = data->tf->map[i][j];
 			s = dtoa(tv1.x, 2);
 			printf("(%s ", s);
 			s = dtoa(tv1.y, 2);
@@ -301,7 +301,7 @@ void			print_fdf2(t_data *data)
 	}
 	printf("\n");
 }
-
+*/
 void			print_fdf(t_data *data)
 {
 	int			i;
@@ -311,15 +311,14 @@ void			print_fdf(t_data *data)
 	t_vector2	pj1;
 	t_vector2	pj2;
 
-print_fdf2(data);
-	for (i = 0; i < data->tf->nb_rows; i++)
+	for (i = 0; i < data->tf->nbline; i++)
 	{
-		for (j = 0; j < data->tf->nb_columns; j++)
+		for (j = 0; j < data->tf->nbcol; j++)
 		{
-			if (j < data->tf->nb_columns - 1)
+			if (j < data->tf->nbcol - 1)
 			{
-				tv1 = data->tf->tvect[i][j];
-				tv2 = data->tf->tvect[i][j+1];
+				tv1 = data->tf->map[i][j];
+				tv2 = data->tf->map[i][j+1];
 				tv1.z *= data->coef_elev;
 				tv2.z *= data->coef_elev;
 				pj1 = project_device(data, tv1, *data->transform_matrix);
@@ -327,13 +326,13 @@ print_fdf2(data);
 				if (clip_v2(data, &pj1, &pj2))
 				{
 					printf("i:%d j:%d %le %le %le %le\n", i, j, pj1.x, pj1.y, pj2.x, pj2.y);
-					fdf_bline(data, pj1.x, pj1.y, pj2.x, pj2.y,0x00FFFFFF);
+					ft_bline(data, pj1.x, pj1.y, pj2.x, pj2.y,0x00FFFFFF);
 				}
 			}
-			if (i < data->tf->nb_rows - 1)
+			if (i < data->tf->nbline - 1)
 			{
-				tv1 = data->tf->tvect[i][j];
-				tv2 = data->tf->tvect[i+1][j];
+				tv1 = data->tf->map[i][j];
+				tv2 = data->tf->map[i+1][j];
 				tv1.z *= data->coef_elev;
 				tv2.z *= data->coef_elev;
 				pj1 = project_device(data, tv1, *data->transform_matrix);
@@ -341,12 +340,12 @@ print_fdf2(data);
 				if (clip_v2(data, &pj1, &pj2))
 				{
 					printf("i:%d j:%d %le %le %le %le\n", i, j, pj1.x, pj1.y, pj2.x, pj2.y);
-					fdf_bline(data, pj1.x, pj1.y, pj2.x, pj2.y,0x00FFFFFF);
+					ft_bline(data, pj1.x, pj1.y, pj2.x, pj2.y,0x00FFFFFF);
 				}
 			}
 		}
 	}
-}*/
+}
 
 void			render_fdf(t_data *data)
 {
@@ -364,7 +363,7 @@ void			render_fdf(t_data *data)
 //	data->world_matrix = malloc(sizeof(t_matrix));
 	*data->world_matrix = multiply_matrix(rot_yaw_pitch_roll_matrix(
 		data->scene_rot.y, data->scene_rot.x, data->scene_rot.z),
-	translation_matrix(data->scene_pos.x, data->scene_pos.y, 
+		translation_matrix(data->scene_pos.x, data->scene_pos.y, 
 		data->scene_pos.z));
 //	data->transform_matrix = malloc(sizeof(t_matrix));
 	*data->transform_matrix = multiply_matrix(*data->world_matrix,

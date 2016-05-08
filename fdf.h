@@ -4,5 +4,6 @@
 #include "trace_line.h"
 #include "mlx.h"
 #include "mm_math.h"
+#include "mm_graph.h"
 
 #endif

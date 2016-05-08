@@ -3,6 +3,13 @@
 #include "mm_math.h"
 #include "mlx.h"
 
+typedef struct	s_file
+{
+	int			nbcol;
+	int			nbline;
+	t_vector3	**map;
+}				t_file;
+
 typedef struct	s_cam
 {
 	t_vector3	position;
@@ -35,14 +42,9 @@ typedef struct	s_data
 	t_matrix	*projection_matrix;
 	t_matrix	*world_matrix;
 	t_matrix	*transform_matrix;
+	t_file		*tf;
+	double		coef_elev;
 }				t_data;
-
-typedef struct	s_file
-{
-	int			nbcol;
-	int			nbline;
-	t_vector3	**map;
-}				t_file;
 
 typedef struct	s_z
 {
