@@ -5,5 +5,6 @@
 #include "mlx.h"
 #include "mm_math.h"
 #include "mm_graph.h"
+#include "modifpic.h"
 
 #endif

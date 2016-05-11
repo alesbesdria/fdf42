@@ -11,6 +11,7 @@ SRCS += mm_math.c
 SRCS += mm_libx.c
 SRCS += mm_intersects.c
 SRCS += mm_graph.c
+SRCS += modifpic.c
 SRCS += trace_line.c
 SRCS += libft2.c
 SRCS += get_next_line.c

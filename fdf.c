@@ -1,5 +1,13 @@
 #include "fdf.h"
 
+int		my_key_funct(int keycode, t_data *data)
+{
+	int toto;
+	toto = data->marg;
+	printf("%d\n", keycode);
+	return (0);
+}
+
 int			main(void)
 {
 	t_l		*mylist;
@@ -33,6 +41,8 @@ int			main(void)
 	data->ptr_mlx = mlx_init();
 	data->ptr_win = mlx_new_window(data->ptr_mlx, data->screen_width, data->screen_height, "mlx 42");
 
+	mlx_key_hook(data->ptr_win, modifhook, data);
+
 	data->cam = set_cam(zero_vector3(), zero_vector3());
 	data->cam->position = set_vector3(0, 0, 50);
 	data->cam->target = set_vector3(0, 0, 0);
@@ -65,10 +75,10 @@ int			main(void)
 		y++;
 	}
 */
-//	mlx_hook(win, my_key_funct, 0);
+//	mlx_key_hook(data->ptr_win, my_key_funct, data);
 //	int		my_key_funct(int keycode, void *param);
 //	printf("key event %d\n", keycode);
-
+//	mlx_hook(data->ptr_win, modifhook(data), 0);
 	mlx_loop(data->ptr_mlx);
 	return (0);
 }
