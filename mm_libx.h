@@ -51,6 +51,8 @@ typedef struct	s_data
 	t_matrix	*transform_matrix;
 	t_file		*tf;
 	double		coef_elev;
+	double		coef_init_elev;
+	double		step_elev;
 }				t_data;
 
 typedef struct	s_z

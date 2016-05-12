@@ -2,11 +2,11 @@
 
 int			main(void)
 {
-	t_l		*mylist;
-	t_file	*mymap;
-	t_data	*data;
-	t_mesh	*mesh;
-	
+	t_l			*mylist;
+	t_file		*mymap;
+	t_data		*data;
+	t_mesh		*mesh;
+
 	mymap = NULL;
 	mylist = NULL;
 	mylist = initialisation();
@@ -28,14 +28,23 @@ int			main(void)
 	data->screen_width = 600;
 	data->canvas_height = 400;
 	data->canvas_width = 600;
+	data->coef_elev = 10;
+	data->scene_pos.x = 10;
+	data->scene_pos.y = 10;
+	data->scene_pos.z = 10;
+	data->scene_rot.x = 0;
+	data->scene_rot.y = 0;
+	data->scene_rot.z = 0;
+
 	data->ptr_mlx = mlx_init();
 	data->ptr_win = mlx_new_window(data->ptr_mlx,
 					data->screen_width, data->screen_height, "mlx 42");
 
 	mlx_key_hook(data->ptr_win, modifhook, data);
-	mlx_hook(data->ptr_win, keypress, keypressmask, keymaintain, data);
 	mlx_mouse_hook(data->ptr_win, mouseclick, data);
-
+	mlx_loop_hook (data->ptr_mlx, modifhook, data);
+	mlx_hook(data->ptr_win, keypress, keypressmask, keymaintain, data);
+	
 	data->cam = set_cam(zero_vector3(), zero_vector3());
 	data->cam->position = set_vector3(0, 0, 50);
 	data->cam->target = set_vector3(0, 0, 0);
@@ -43,6 +52,8 @@ int			main(void)
 	mesh = malloc(sizeof(t_mesh));
 	data->scene_pos = set_vector3(0, 0, 0);
 	data->scene_rot = set_vector3(1, 0.5, 0.5);
+	data->coef_init_elev = data->scene_pos.z;
+	data->coef_elev = data->coef_init_elev;
 	render_fdf(data);
 	print_fdf(data);
 
