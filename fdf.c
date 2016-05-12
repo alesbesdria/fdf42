@@ -1,13 +1,5 @@
 #include "fdf.h"
 
-int		my_key_funct(int keycode, t_data *data)
-{
-	int toto;
-	toto = data->marg;
-	printf("%d\n", keycode);
-	return (0);
-}
-
 int			main(void)
 {
 	t_l		*mylist;
@@ -31,17 +23,18 @@ int			main(void)
 	data->projection_matrix = malloc(sizeof(t_matrix));
 	data->world_matrix = malloc(sizeof(t_matrix));
 	data->transform_matrix = malloc(sizeof(t_matrix));
-//	mymap->nbcol = 10;
-//	mymap->nbline = 8;
 	data->marg = 50;
 	data->screen_height = 400;
 	data->screen_width = 600;
 	data->canvas_height = 400;
 	data->canvas_width = 600;
 	data->ptr_mlx = mlx_init();
-	data->ptr_win = mlx_new_window(data->ptr_mlx, data->screen_width, data->screen_height, "mlx 42");
+	data->ptr_win = mlx_new_window(data->ptr_mlx,
+					data->screen_width, data->screen_height, "mlx 42");
 
 	mlx_key_hook(data->ptr_win, modifhook, data);
+	mlx_hook(data->ptr_win, keypress, keypressmask, keymaintain, data);
+	mlx_mouse_hook(data->ptr_win, mouseclick, data);
 
 	data->cam = set_cam(zero_vector3(), zero_vector3());
 	data->cam->position = set_vector3(0, 0, 50);
@@ -75,10 +68,6 @@ int			main(void)
 		y++;
 	}
 */
-//	mlx_key_hook(data->ptr_win, my_key_funct, data);
-//	int		my_key_funct(int keycode, void *param);
-//	printf("key event %d\n", keycode);
-//	mlx_hook(data->ptr_win, modifhook(data), 0);
 	mlx_loop(data->ptr_mlx);
 	return (0);
 }

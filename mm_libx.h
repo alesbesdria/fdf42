@@ -3,6 +3,13 @@
 #include "mm_math.h"
 #include "mlx.h"
 
+#define keypressmask (1L << 0)
+#define keyreleasemask (1L << 1)
+#define buttonpressmask (1L << 2)
+#define buttonreleasemask (1L << 3)
+#define keypress 2
+#define buttonpress 4
+
 typedef struct	s_file
 {
 	int			nbcol;

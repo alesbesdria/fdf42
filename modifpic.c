@@ -10,10 +10,29 @@ void	modifcolorz(t_data *data)
 	
 }
 */
-int		modifhook(int keycode, t_data *data)
+
+int		mouseclick(int button, int x, int y, t_data *data)//mouse_hook
 {
-	printf("%d\n", keycode);
-	if (keycode == 65307)//esc
+	int toto;
+	toto = data->marg;
+	printf("button : %d, x : %d, y : %d\n", button, x, y);
+	return (0);
+}
+
+int		keymaintain(int keycode, t_data *data)//hook
+{
+	int toto;
+	toto = data->marg;
+	printf("keycode : %d\n", keycode);
+	return (0);
+	
+	return (0);
+}
+
+int		modifhook(int keycode, t_data *data)//key hook
+{
+	printf("keycode : %d\n", keycode);
+	if (keycode == 65307)
 	{
 		mlx_destroy_window(data->ptr_mlx, data->ptr_win);
 		exit(0);
