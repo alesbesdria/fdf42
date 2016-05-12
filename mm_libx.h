@@ -53,6 +53,14 @@ typedef struct	s_data
 	double		coef_elev;
 	double		coef_init_elev;
 	double		step_elev;
+
+	int			*img[2];
+	int			*canvas[2];
+	short		back_buffer;
+	short		front_buffer;
+	int			bpp;
+	int			sizeline;
+	int			endian;
 }				t_data;
 
 typedef struct	s_z

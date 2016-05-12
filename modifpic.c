@@ -19,13 +19,19 @@ int		mouseclick(int keycode, int x, int y, t_data *data)//mouse_hook
 	if (keycode == 5)//zoom-
 	{
 //		data->coef_elev += data->step_elev;
-		data->scene_pos.z -= 0.1;
+		clear_screen(data);
+		data->scene_pos.z -= 2;
+		render_fdf(data);
+		print_fdf(data);
 		return (0);
 	}
 	if (keycode == 4)//zoom+
 	{
 //		data->coef_elev -= data->step_elev;
-		data->scene_pos.z -= 0.1;
+		clear_screen(data);
+		data->scene_pos.z += 2;
+		render_fdf(data);
+		print_fdf(data);
 		return (0);
 	}
 	return (0);
@@ -39,44 +45,62 @@ int		keymaintain(int keycode, t_data *data)//hook
 
 	if (keycode == 115)//modifhauteur bas s
 	{
+		clear_screen(data);
 		data->coef_elev += 0.1;
+		render_fdf(data);
+		print_fdf(data);
 		return (0);
 	}
 	if (keycode == 119)//modifhauteur haut w
 	{
+		clear_screen(data);
 		data->coef_elev -= 0.1;
+		render_fdf(data);
+		print_fdf(data);
 		return (0);
 	}
-/*->my_meshes->m[0]->rotation.x += 0.01;
- * data->my_meshes->m[0]->rotation.y += 0.01;*/
-	if (keycode == 38)//rotation haute
+//->my_meshes->m[0]->rotation.x += 0.01;
+// data->my_meshes->m[0]->rotation.y += 0.01;
+	if (keycode == 65362)//rotation haute
 	{
-		data->scene_rot.x += 0.1;
+		clear_screen(data);
+		data->scene_rot.x += .1;
+		render_fdf(data);
+		print_fdf(data);
 		return (0);
 //		data->scene_rot.y += 0.1;
 //		data->scene_rot.z = ;
 	}
-	if (keycode == 40)//rotation basse
+	if (keycode == 65364)//rotation basse
 	{
+		clear_screen(data);
 //		data->scene_pos -= 0.1;
-		data->scene_rot.x -= 0.1;
+		data->scene_rot.x -= .1;
+		render_fdf(data);
+		print_fdf(data);
 		return (0);
 //		data->scene_rot.y -= 0.1;
 //		data->scene_rot.z = ;
 	}
-	if (keycode == 39)//rotation droite
+	if (keycode == 65363)//rotation droite
 	{
 //		data->scene_pos = ;
 //		data->scene_rot.x += 0.1;
-		data->scene_rot.y += 0.1;
+		clear_screen(data);
+		data->scene_rot.y += .1;
+		render_fdf(data);
+		print_fdf(data);
 		return (0);
 //		data->scene_rot.z = ;
 	}
-	if (keycode == 37)//rotation gauche
+	if (keycode == 65361)//rotation gauche
 	{
 //		data->scene_pos = ;
 //		data->scene_rot.x -= 0.1;
-		data->scene_rot.y -= 0.1;
+		clear_screen(data);
+		data->scene_rot.y -= .1;
+		render_fdf(data);
+		print_fdf(data);
 		return (0);
 //		data->scene_rot.z = ;
 	}
@@ -94,9 +118,12 @@ int		modifhook(int keycode, t_data *data)//key hook
 	}
 	if (keycode == 32)//barre espace retour a la normale
 	{
+		clear_screen(data);
 		data->scene_pos.x = 0;
 		data->scene_pos.y = 0;
 		data->scene_pos.z = 0;
+		render_fdf(data);
+		print_fdf(data);
 		return (0);
 	}
 	return (0);

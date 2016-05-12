@@ -19,22 +19,24 @@ int			main(void)
 	createmap(mylist, mymap);
 
 	data->tf = mymap;
+
 	data->view_matrix = malloc(sizeof(t_matrix));
 	data->projection_matrix = malloc(sizeof(t_matrix));
 	data->world_matrix = malloc(sizeof(t_matrix));
 	data->transform_matrix = malloc(sizeof(t_matrix));
+
 	data->marg = 50;
 	data->screen_height = 400;
 	data->screen_width = 600;
 	data->canvas_height = 400;
 	data->canvas_width = 600;
-	data->coef_elev = 10;
-	data->scene_pos.x = 10;
+	data->coef_elev = -10;
+/*	data->scene_pos.x = 10;
 	data->scene_pos.y = 10;
 	data->scene_pos.z = 10;
 	data->scene_rot.x = 0;
-	data->scene_rot.y = 0;
-	data->scene_rot.z = 0;
+	data->scene_rot.y = pi;
+	data->scene_rot.z = 0;*/
 
 	data->ptr_mlx = mlx_init();
 	data->ptr_win = mlx_new_window(data->ptr_mlx,
@@ -42,18 +44,41 @@ int			main(void)
 
 	mlx_key_hook(data->ptr_win, modifhook, data);
 	mlx_mouse_hook(data->ptr_win, mouseclick, data);
-	mlx_loop_hook (data->ptr_mlx, modifhook, data);
+//	mlx_loop_hook (data->ptr_mlx, modifhook, data);
 	mlx_hook(data->ptr_win, keypress, keypressmask, keymaintain, data);
-	
+
 	data->cam = set_cam(zero_vector3(), zero_vector3());
 	data->cam->position = set_vector3(0, 0, 50);
 	data->cam->target = set_vector3(0, 0, 0);
 
 	mesh = malloc(sizeof(t_mesh));
 	data->scene_pos = set_vector3(0, 0, 0);
-	data->scene_rot = set_vector3(1, 0.5, 0.5);
-	data->coef_init_elev = data->scene_pos.z;
+	data->scene_rot = set_vector3(0.5, pi, 0.5);
+	data->coef_init_elev = .3;
 	data->coef_elev = data->coef_init_elev;
+
+	data->put_in_canvas = true;
+
+	data->back_buffer = 0;
+	data->front_buffer = 1;
+	data->img[data->back_buffer] = mlx_new_image(data->ptr_mlx,
+		data->canvas_width, data->canvas_height);
+
+	data->canvas[data->back_buffer] = (int *) mlx_get_data_addr(
+		data->img[data->back_buffer], &data->bpp, &data->sizeline,
+		&data->endian);
+
+	data->img[data->front_buffer] = mlx_new_image(data->ptr_mlx,
+		data->canvas_width, data->canvas_height);
+
+	data->canvas[data->front_buffer] = (int *) mlx_get_data_addr(
+		data->img[data->front_buffer], &data->bpp, &data->sizeline,
+		&data->endian);
+
+
+	mlx_put_image_to_window(data->ptr_mlx, data->ptr_win,
+		data->img[data->back_buffer], 0, 0);
+
 	render_fdf(data);
 	print_fdf(data);
 

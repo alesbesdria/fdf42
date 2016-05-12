@@ -16,7 +16,7 @@ void		ft_bline(t_data *data,int xi,int yi,int xf,int yf, int color)
 	err = dx - dy;
 	while (1)
 	{
-		mlx_pixel_put(data->ptr_mlx, data->ptr_win, xi, yi, color);
+		mlx_pixel_put2(data, xi, yi, color);
 		if ((xi == xf) && (yi == yf))
 			break;
 		e2 = 2 * err;

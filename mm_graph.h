@@ -23,5 +23,6 @@ void 		render_fdf(t_data *data);
 void		ft_bline(t_data *data,int xi,int yi,int xf,int yf, int color);
 void		draw_square(t_data *data,int xi,int yi,int xf,int yf, int color);
 void		print_fdf(t_data *data);
+void		clear_screen(t_data *data);
 
 #endif
