@@ -29,7 +29,7 @@ void		ft_bline_color(t_data *data,int xi,int yi,int xf,int yf,
 		len_progress = sqrt(pow(save_xi - xi, 2) + pow(save_yi - yi, 2));
 		proportion = len_progress / len_segment;
 		altitude = alt1 + (alt2 - alt1) * proportion;
-		mlx_pixel_put2(data, xi, yi, altitude/*modifcolor(xi, yi, xf, yf, save_xi, save_yi)*/);
+		mlx_pixel_put2(data, xi, yi, modifcolor(data, altitude));
 		if ((xi == xf) && (yi == yf))
 			break;
 		e2 = 2 * err;

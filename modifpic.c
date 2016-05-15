@@ -1,41 +1,28 @@
 #include "modifpic.h"
-/*
-int		modifcolor(int xi, int yi, int xf, int yf, int save_xi, int save_yi)
-{
-	t_color4	*t_c;
-	t_vector3	t_v;
-	double	color;
-	int		i;
-	int		j;
-	int		start;
-	int		len_vector;
 
-	i = 0;
-	j = 0;
-	len_vector = length_vector3(t_v);
-	start = len_vector / 4;
-	t_c->a = pow(0x00, 3);
-	t_c->r = pow(i, 2);
-	t_c->g = pow(i, 1);
-	t_c->b = pow(i, 0);
-	sqrt()
-	while (i <= 256)
-	{
-		while (j < start)
-		{
-			start += 256 / 100;
-			t_c->r = pow(i, 2);
-			t_c->g = pow(i, 1);
-			t_c->b = pow(i, 0);
-			j++;
-		}
-		i += 256 / 4;
-		i++;
-		//longueur vertex /4 ou /6
-//		mlx_pixel_put2(data, t_v.x, t_v.y, color);
-	}
+int		modifcolor(t_data *data, double altitude)
+{
+	t_color4	f_c;
+	int color;
+	int			start_color;
+	int			end_color;
+	double		proportion;
+	t_color4	s_c;
+	t_color4	e_c;
+
+	start_color = 0x00404040;
+	end_color = 0x00FFFFFF;
+	s_c = int_to_color4(start_color);
+	e_c = int_to_color4(end_color);
+	proportion = ((altitude - data->tf->min_elev) /
+		(data->tf->max_elev - data->tf->min_elev));
+	f_c.r = s_c.r + (e_c.r - s_c.r) * proportion;
+	f_c.g = s_c.g + (e_c.g - s_c.g) * proportion;
+	f_c.b = s_c.b + (e_c.b - s_c.b) * proportion;
+	f_c.a = s_c.a + (e_c.a - s_c.a) * proportion;
+	color = color4_to_int(f_c);
 	return (color);
-}*/
+}
 
 int		mouseclick(int keycode, int x, int y, t_data *data)//mouse_hook
 {
