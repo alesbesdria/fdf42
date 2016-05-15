@@ -1,6 +1,7 @@
 #include "trace_line.h"
 
-void		ft_bline(t_data *data,int xi,int yi,int xf,int yf, int color)
+void		ft_bline_color(t_data *data,int xi,int yi,int xf,int yf,
+				double alt1, double alt2)
 {
 	double	dx;
 	double	dy;
@@ -8,8 +9,12 @@ void		ft_bline(t_data *data,int xi,int yi,int xf,int yf, int color)
 	double	sy;
 	double	err;
 	double	e2;
+	double	altitude;
 	int		save_xi;
 	int		save_yi;
+	double	len_segment;
+	double	len_progress;
+	double	proportion;
 
 	save_xi = xi;
 	save_yi = yi;
@@ -18,9 +23,46 @@ void		ft_bline(t_data *data,int xi,int yi,int xf,int yf, int color)
 	sx = (xi < xf) ? 1 : -1;
 	sy = (yi < yf) ? 1 : -1;
 	err = dx - dy;
+	len_segment = sqrt(pow(xf - xi, 2) + pow(yf - yi, 2));
 	while (1)
 	{
-		mlx_pixel_put2(data, xi, yi, color/*modifcolor(xi, yi, xf, yf, save_xi, save_yi)*/);
+		len_progress = sqrt(pow(save_xi - xi, 2) + pow(save_yi - yi, 2));
+		proportion = len_progress / len_segment;
+		altitude = alt1 + (alt2 - alt1) * proportion;
+		mlx_pixel_put2(data, xi, yi, altitude/*modifcolor(xi, yi, xf, yf, save_xi, save_yi)*/);
+		if ((xi == xf) && (yi == yf))
+			break;
+		e2 = 2 * err;
+		if (e2 > -dy)
+		{
+			err -= dy;
+			xi += sx;
+		}
+		if (e2 < dx)
+		{
+			err += dx;
+			yi += sy;
+		}
+	}
+}
+
+void		ft_bline(t_data *data,int xi,int yi,int xf,int yf, int color)
+{
+	double	dx;
+	double	dy;
+	double	sx;
+	double	sy;
+	double	err;
+	double	e2;
+
+	dx = abs(xf - xi);
+	dy = abs(yf - yi);
+	sx = (xi < xf) ? 1 : -1;
+	sy = (yi < yf) ? 1 : -1;
+	err = dx - dy;
+	while (1)
+	{
+		mlx_pixel_put2(data, xi, yi, color);
 		if ((xi == xf) && (yi == yf))
 			break;
 		e2 = 2 * err;

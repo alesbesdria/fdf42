@@ -15,6 +15,8 @@ typedef struct	s_file
 	int			nbcol;
 	int			nbline;
 	t_vector3	**map;
+	double		min_elev;
+	double		max_elev;
 }				t_file;
 
 typedef struct	s_cam

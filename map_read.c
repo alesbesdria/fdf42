@@ -25,6 +25,8 @@ void	createmap(t_l *mylist, t_file *mymap)
 	int		i;
 	int		j;
 
+	mymap->min_elev = 1e70;
+	mymap->max_elev = -1e70;
 	curr = mylist->first;
 	mymap->map = createtable(mymap->nbline, mymap->nbcol);
 	center_x = (float) (mymap->nbcol - 1) / 2;
@@ -35,6 +37,10 @@ void	createmap(t_l *mylist, t_file *mymap)
 		j = mymap->nbcol - 1;
 		while (j >= 0)
 		{
+			if (mymap->min_elev > curr->value)
+				mymap->min_elev = curr->value;
+			if (mymap->max_elev < curr->value)
+				mymap->max_elev = curr->value;
 			mymap->map[i][j] = set_vector3(j - center_x, i - center_y, curr->value);
 //			printf("value : %d j : %d\n", curr->value, j);
 			curr = curr->next;

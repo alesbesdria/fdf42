@@ -59,6 +59,8 @@ typedef struct		s_color4
 	short			a;
 }					t_color4;
 
+int					color4_to_int(t_color4 tc);
+t_color4			int_to_color4(int color);
 t_color4			new_color4(short r, short g, short b, short a);
 t_vector2			new_vector2(double x, double y);
 double				length_vector2(t_vector2 myvector);
