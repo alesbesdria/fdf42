@@ -8,7 +8,11 @@ void		ft_bline(t_data *data,int xi,int yi,int xf,int yf, int color)
 	double	sy;
 	double	err;
 	double	e2;
+	int		save_xi;
+	int		save_yi;
 
+	save_xi = xi;
+	save_yi = yi;
 	dx = abs(xf - xi);
 	dy = abs(yf - yi);
 	sx = (xi < xf) ? 1 : -1;
@@ -16,7 +20,7 @@ void		ft_bline(t_data *data,int xi,int yi,int xf,int yf, int color)
 	err = dx - dy;
 	while (1)
 	{
-		mlx_pixel_put2(data, xi, yi, color);
+		mlx_pixel_put2(data, xi, yi, color/*modifcolor(xi, yi, xf, yf, save_xi, save_yi)*/);
 		if ((xi == xf) && (yi == yf))
 			break;
 		e2 = 2 * err;

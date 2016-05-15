@@ -1,15 +1,41 @@
 #include "modifpic.h"
 /*
-void	modifz(t_data *data)
+int		modifcolor(int xi, int yi, int xf, int yf, int save_xi, int save_yi)
 {
-	
-}
+	t_color4	*t_c;
+	t_vector3	t_v;
+	double	color;
+	int		i;
+	int		j;
+	int		start;
+	int		len_vector;
 
-void	modifcolorz(t_data *data)
-{
-	
-}
-*/
+	i = 0;
+	j = 0;
+	len_vector = length_vector3(t_v);
+	start = len_vector / 4;
+	t_c->a = pow(0x00, 3);
+	t_c->r = pow(i, 2);
+	t_c->g = pow(i, 1);
+	t_c->b = pow(i, 0);
+	sqrt()
+	while (i <= 256)
+	{
+		while (j < start)
+		{
+			start += 256 / 100;
+			t_c->r = pow(i, 2);
+			t_c->g = pow(i, 1);
+			t_c->b = pow(i, 0);
+			j++;
+		}
+		i += 256 / 4;
+		i++;
+		//longueur vertex /4 ou /6
+//		mlx_pixel_put2(data, t_v.x, t_v.y, color);
+	}
+	return (color);
+}*/
 
 int		mouseclick(int keycode, int x, int y, t_data *data)//mouse_hook
 {

@@ -75,12 +75,12 @@ int			main(void)
 		data->img[data->front_buffer], &data->bpp, &data->sizeline,
 		&data->endian);
 
-
-	mlx_put_image_to_window(data->ptr_mlx, data->ptr_win,
-		data->img[data->back_buffer], 0, 0);
+//	ft_bline(data, 0.0, 0, 100, 100, 0x00FF00FF);
 
 	render_fdf(data);
 	print_fdf(data);
+//	mlx_put_image_to_window(data->ptr_mlx, data->ptr_win,
+//		data->img[data->back_buffer], 0, 0);
 
 /*	mlx_pixel_put(data->ptr_mlx, data->ptr_win, data->begin_map_x, data->begin_map_y, 0x00FFFF00);
 	step(data, mymap);

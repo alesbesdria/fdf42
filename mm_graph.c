@@ -34,14 +34,14 @@ void	clear_screen(t_data *data)
 		j = 0;
 		while (j < data->canvas_width)
 		{
-			mlx_pixel_put(data->ptr_mlx, data->ptr_win, j, i, 0x00000000);
+//			mlx_pixel_put2(data->ptr_mlx, data->ptr_win, j, i, 0x00000000);
+			mlx_pixel_put2(data, j, i, 0x00000000);
 			j++;
 		}
 		i++;
 	}
 }
 
-//t_vector2			project_device(t_device dev, t_vector3 coord, t_matrix tMat)
 t_vector2			project_device(t_data *data, t_vector3 coord, t_matrix tMat)
 {
 	t_vector3		point;
@@ -49,10 +49,8 @@ t_vector2			project_device(t_data *data, t_vector3 coord, t_matrix tMat)
 	double			y;
 
 	point = transform_coord_vector3(coord, tMat);
-	//	x = round((point.x * device.workingWidth) + (device.workingWidth / 2.0)) >> 0;
 	x = round((point.x * data->canvas_width) + (data->canvas_width / 2.0));
 	y = round((point.y * data->canvas_height) + (data->canvas_height / 2.0));
-//printf("x: %lf, y: %lf///\n",x,y);
 	return (new_vector2(x, y));
 }
 
@@ -144,6 +142,7 @@ void			print_fdf(t_data *data)
 {
 	int			i;
 	int			j;
+	int			result;
 	t_vector3	tv1;
 	t_vector3	tv2;
 	t_vector2	pj1;
@@ -183,27 +182,20 @@ void			print_fdf(t_data *data)
 			}
 		}
 	}
+	result = mlx_put_image_to_window (data->ptr_mlx, data->ptr_win,
+		data->img[data->back_buffer], 1, 0);
 }
 
 void			render_fdf(t_data *data)
 {
-//	t_mesh		*mesh;
-
-//	mesh = malloc(sizeof(t_mesh));
-//	mesh->position = set_vector3(0, 0, 0);
-//	mesh->rotation = set_vector3(0, 0, 0);
-//	data->view_matrix = malloc(sizeof(t_matrix));
 	*data->view_matrix = look_at_lh_matrix(data->cam->position,
 		data->cam->target, up_vector3());
-//	data->projection_matrix= malloc(sizeof(t_matrix));
 	*data->projection_matrix = perspective_fov_lh_matrix(0.78,
 		data->canvas_width / data->canvas_height, 0.01, 1);
-//	data->world_matrix = malloc(sizeof(t_matrix));
 	*data->world_matrix = multiply_matrix(rot_yaw_pitch_roll_matrix(
 		data->scene_rot.y, data->scene_rot.x, data->scene_rot.z),
 		translation_matrix(data->scene_pos.x, data->scene_pos.y, 
 		data->scene_pos.z));
-//	data->transform_matrix = malloc(sizeof(t_matrix));
 	*data->transform_matrix = multiply_matrix(*data->world_matrix,
 		multiply_matrix(*data->view_matrix, *data->projection_matrix));
 }
