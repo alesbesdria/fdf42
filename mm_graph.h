@@ -21,6 +21,8 @@ void		print_buffer(t_data *data);
 void 		render(t_data *data, t_meshes *meshes);
 void 		render_fdf(t_data *data);
 void		ft_bline(t_data *data,int xi,int yi,int xf,int yf, int color);
+void		ft_bline_color(t_data *data,int xi,int yi,int xf,int yf,
+				double alt1, double alt2);
 void		draw_square(t_data *data,int xi,int yi,int xf,int yf, int color);
 void		print_fdf(t_data *data);
 void		clear_screen(t_data *data);

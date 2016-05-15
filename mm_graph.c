@@ -163,7 +163,8 @@ void			print_fdf(t_data *data)
 				if (clip_v2(data, &pj1, &pj2))
 				{
 //					printf("i:%d j:%d %le %le %le %le\n", i, j, pj1.x, pj1.y, pj2.x, pj2.y);
-					ft_bline(data, pj1.x, pj1.y, pj2.x, pj2.y,0x00FFFFFF);
+					ft_bline_color(data, pj1.x, pj1.y, pj2.x,
+						pj2.y, tv1.z, tv2.z);
 				}
 			}
 			if (i < data->tf->nbline - 1)
@@ -177,7 +178,8 @@ void			print_fdf(t_data *data)
 				if (clip_v2(data, &pj1, &pj2))
 				{
 //					printf("i:%d j:%d %le %le %le %le\n", i, j, pj1.x, pj1.y, pj2.x, pj2.y);
-					ft_bline(data, pj1.x, pj1.y, pj2.x, pj2.y,0x00FFFFFF);
+					ft_bline_color(data, pj1.x, pj1.y, pj2.x,
+						pj2.y, tv1.z, tv2.z);
 				}
 			}
 		}
