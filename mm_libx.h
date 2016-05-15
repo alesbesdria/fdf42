@@ -25,6 +25,15 @@ typedef struct	s_cam
 	t_vector3	target;
 }				t_cam;
 
+typedef struct	s_palette
+{
+	t_color4	start_color;
+	t_color4	end_color;
+	double		start_range;
+	double		end_range;
+	int			nb_lines;
+}				t_palette;
+
 typedef struct	s_data
 {
 	void		*ptr_mlx;
@@ -55,7 +64,6 @@ typedef struct	s_data
 	double		coef_elev;
 	double		coef_init_elev;
 	double		step_elev;
-
 	int			*img[2];
 	int			*canvas[2];
 	short		back_buffer;
@@ -63,6 +71,8 @@ typedef struct	s_data
 	int			bpp;
 	int			sizeline;
 	int			endian;
+	t_palette	*palette;
+	int			nb_palette;
 }				t_data;
 
 typedef struct	s_z

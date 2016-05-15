@@ -76,9 +76,9 @@ int			main(void)
 		&data->endian);
 
 //	ft_bline(data, 0.0, 0, 100, 100, 0x00FF00FF);
-
 	render_fdf(data);
 	print_fdf(data);
+//ft_bline_color(data, 0,0,400,400,0,10);
 //	mlx_put_image_to_window(data->ptr_mlx, data->ptr_win,
 //		data->img[data->back_buffer], 0, 0);
 

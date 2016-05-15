@@ -160,11 +160,14 @@ void			print_fdf(t_data *data)
 				tv2.z *= data->coef_elev;
 				pj1 = project_device(data, tv1, *data->transform_matrix);
 				pj2 = project_device(data, tv2, *data->transform_matrix);
+				tv1.z /= data->coef_elev;
+				tv2.z /= data->coef_elev;
 				if (clip_v2(data, &pj1, &pj2))
 				{
 //					printf("i:%d j:%d %le %le %le %le\n", i, j, pj1.x, pj1.y, pj2.x, pj2.y);
 					ft_bline_color(data, pj1.x, pj1.y, pj2.x,
 						pj2.y, tv1.z, tv2.z);
+//						printf("%le %le");
 				}
 			}
 			if (i < data->tf->nbline - 1)
@@ -175,6 +178,8 @@ void			print_fdf(t_data *data)
 				tv2.z *= data->coef_elev;
 				pj1 = project_device(data, tv1, *data->transform_matrix);
 				pj2 = project_device(data, tv2, *data->transform_matrix);
+				tv1.z /= data->coef_elev;
+				tv2.z /= data->coef_elev;
 				if (clip_v2(data, &pj1, &pj2))
 				{
 //					printf("i:%d j:%d %le %le %le %le\n", i, j, pj1.x, pj1.y, pj2.x, pj2.y);

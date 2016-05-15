@@ -19,7 +19,7 @@ t_color4			int_to_color4(int color)
 	return (tc);
 }
 
-t_color4			new_color4(short r, short g, short b, short a)
+t_color4			new_color4(short a, short r, short g, short b)
 {
 	t_color4		tc;
 

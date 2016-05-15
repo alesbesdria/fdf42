@@ -24,6 +24,7 @@ void		ft_bline_color(t_data *data,int xi,int yi,int xf,int yf,
 	sy = (yi < yf) ? 1 : -1;
 	err = dx - dy;
 	len_segment = sqrt(pow(xf - xi, 2) + pow(yf - yi, 2));
+//	printf("%le %le - ",alt1,alt2);
 	while (1)
 	{
 		len_progress = sqrt(pow(save_xi - xi, 2) + pow(save_yi - yi, 2));
