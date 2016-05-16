@@ -167,6 +167,8 @@ void			print_fdf(t_data *data)
 //					printf("i:%d j:%d %le %le %le %le\n", i, j, pj1.x, pj1.y, pj2.x, pj2.y);
 					ft_bline_color(data, pj1.x, pj1.y, pj2.x,
 						pj2.y, tv1.z, tv2.z);
+//					ft_bline(data, pj1.x, pj1.y, pj2.x,
+//						pj2.y, 0x00FFFFFF);
 //						printf("%le %le");
 				}
 			}
@@ -185,6 +187,8 @@ void			print_fdf(t_data *data)
 //					printf("i:%d j:%d %le %le %le %le\n", i, j, pj1.x, pj1.y, pj2.x, pj2.y);
 					ft_bline_color(data, pj1.x, pj1.y, pj2.x,
 						pj2.y, tv1.z, tv2.z);
+//					ft_bline(data, pj1.x, pj1.y, pj2.x,
+//						pj2.y, 0x00FFFFFF);
 				}
 			}
 		}

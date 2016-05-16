@@ -1,12 +1,17 @@
 #include "fdf.h"
 
-int			main(void)
+int			main(int argc, char **argv)
 {
 	t_l			*mylist;
 	t_file		*mymap;
 	t_data		*data;
 	t_mesh		*mesh;
+	int			fd;
+//	int			i;
+//	int			j;
 
+	if (argc != 2)
+		return (0);
 	mymap = NULL;
 	mylist = NULL;
 	mylist = initialisation();
@@ -14,9 +19,10 @@ int			main(void)
 	mymap = malloc(sizeof(t_file));
 	data = malloc(sizeof(t_data));
 
-	map_read(mymap, mylist);
-	createtable(mymap->nbline, mymap->nbcol);
-	createmap(mylist, mymap);
+	fd = open(argv[1], O_RDONLY);
+	map_read(fd, mymap, mylist);
+//	createtable(mymap->nbline, mymap->nbcol);
+//	createmap(mylist, mymap);
 
 	data->tf = mymap;
 
@@ -25,12 +31,12 @@ int			main(void)
 	data->world_matrix = malloc(sizeof(t_matrix));
 	data->transform_matrix = malloc(sizeof(t_matrix));
 
-	data->marg = 50;
-	data->screen_height = 400;
-	data->screen_width = 600;
-	data->canvas_height = 400;
-	data->canvas_width = 600;
-	data->coef_elev = -10;
+	data->marg = 60;
+	data->screen_height = 800;
+	data->screen_width = 1000;
+	data->canvas_height = 800;
+	data->canvas_width = 1000;
+	data->coef_elev = 10;
 /*	data->scene_pos.x = 10;
 	data->scene_pos.y = 10;
 	data->scene_pos.z = 10;
@@ -40,20 +46,28 @@ int			main(void)
 
 	data->ptr_mlx = mlx_init();
 	data->ptr_win = mlx_new_window(data->ptr_mlx,
-					data->screen_width, data->screen_height, "mlx 42");
+					data->screen_width, data->screen_height, "FDF Meli 42");
 
 	mlx_key_hook(data->ptr_win, modifhook, data);
 	mlx_mouse_hook(data->ptr_win, mouseclick, data);
 //	mlx_loop_hook (data->ptr_mlx, modifhook, data);
 	mlx_hook(data->ptr_win, keypress, keypressmask, keymaintain, data);
 
+	if (mymap->nbcol < mymap->nbline)
+		data->ratio_init_cam = mymap->nbline * 3;
+	else
+	data->ratio_init_cam = mymap->nbcol * 3;
+	data->ratio_cam = data->ratio_init_cam;
+	data->step_cam = data->ratio_init_cam / 5;
 	data->cam = set_cam(zero_vector3(), zero_vector3());
-	data->cam->position = set_vector3(0, 0, 50);
-	data->cam->target = set_vector3(0, 0, 0);
+	data->cam->position = set_vector3(0, 0 , data->ratio_cam);
+
+//	data->cam->position = set_vector3(0, 0, 50);
+//	data->cam->target = set_vector3(0, 0, 0);
 
 	mesh = malloc(sizeof(t_mesh));
 	data->scene_pos = set_vector3(0, 0, 0);
-	data->scene_rot = set_vector3(0.5, pi, 0.5);
+	data->scene_rot = set_vector3(0.5, 0.5, 0.5);
 	data->coef_init_elev = .3;
 	data->coef_elev = data->coef_init_elev;
 

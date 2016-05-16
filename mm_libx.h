@@ -36,6 +36,7 @@ typedef struct	s_palette
 
 typedef struct	s_data
 {
+	char		*argv;
 	void		*ptr_mlx;
 	void		*ptr_win;
 	int			screen_height;
@@ -73,6 +74,9 @@ typedef struct	s_data
 	int			endian;
 	t_palette	*palette;
 	int			nb_palette;
+	double		ratio_cam;
+	double		ratio_init_cam;
+	double		step_cam;
 }				t_data;
 
 typedef struct	s_z

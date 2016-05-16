@@ -41,7 +41,7 @@ void	createmap(t_l *mylist, t_file *mymap)
 				mymap->min_elev = curr->value;
 			if (mymap->max_elev < curr->value)
 				mymap->max_elev = curr->value;
-			mymap->map[i][j] = set_vector3(j - center_x, i - center_y, curr->value);
+			mymap->map[i][j] = set_vector3(center_x - j, i - center_y, curr->value);
 //			printf("value : %d j : %d\n", curr->value, j);
 			curr = curr->next;
 			j--;
@@ -50,19 +50,17 @@ void	createmap(t_l *mylist, t_file *mymap)
 	}
 }
 
-void		map_read(t_file *mymap, t_l *mylist)
+void		map_read(int fd, t_file *mymap, t_l *mylist)
 {
 	t_z		*curr;
 	int		x;
 	int		y;
 	int		z;
-	int		fd;
 	char	*line;
 	char	**tab;
 // colonne = x, ligne = y;
 	y = 0;
 	line = NULL;
-	fd = open("42.fdf", O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
 		tab = ft_strsplit(line, ' ');
@@ -82,6 +80,7 @@ void		map_read(t_file *mymap, t_l *mylist)
 	mymap->map = createtable(y, x);
 	mymap->nbcol = x;
 	mymap->nbline = y;
+	createmap(mylist, mymap);
 	close(fd);
 }
 

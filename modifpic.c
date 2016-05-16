@@ -119,7 +119,7 @@ int		keymaintain(int keycode, t_data *data)//hook
 	toto = data->marg;
 	printf("%d\n", keycode);
 
-	if (keycode == 115)//modifhauteur bas s
+	if (keycode == 119)//modifhauteur bas s
 	{
 		clear_screen(data);
 		data->coef_elev += 0.1;
@@ -127,7 +127,7 @@ int		keymaintain(int keycode, t_data *data)//hook
 		print_fdf(data);
 		return (0);
 	}
-	if (keycode == 119)//modifhauteur haut w
+	if (keycode == 115)//modifhauteur haut w
 	{
 		clear_screen(data);
 		data->coef_elev -= 0.1;
