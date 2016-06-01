@@ -39,6 +39,7 @@ typedef struct	s_data
 	char		*argv;
 	void		*ptr_mlx;
 	void		*ptr_win;
+	void		*ptr_menu;
 	int			screen_height;
 	int			screen_width;
 	int			marg;

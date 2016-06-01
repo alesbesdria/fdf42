@@ -1,4 +1,42 @@
 #include "modifpic.h"
+#include <unistd.h>
+
+void		menu(t_data *data)
+{
+	int	increment;
+	int	pas;
+
+	increment = 1;
+	pas = 12;
+//	ft_bline(data, 801, 0, 801, 1000, 0x0026FFFB);
+	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 150,
+	pas * increment++, 0X00269DFF, "   M E N U    ");
+		increment++;
+	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 175,
+	pas * increment++, 0X0026FFFB, "Zoom+ : Souris Avant");
+		increment++;
+	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 175,
+	pas * increment++, 0x0026FFFB, "Zoom- : Souris Arriere");
+		increment++;
+	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 175,
+	pas * increment++, 0x0026FFFB, "Rot. Haut : Fleche Haut");
+		increment++;
+	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 175,
+	pas * increment++, 0x0026FFFB, "Rot. Bas : Fleche Bas");
+		increment++;
+	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 175,
+	pas * increment++, 0x0026FFFB, "Rot. Gauche : Fleche Gauche");
+		increment++;
+	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 175,
+	pas * increment++, 0x0026FFFB, "Rot. Droite : Fleche Droite");
+		increment++;
+	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 175,
+	pas * increment++, 0x0026FFFB, "Modif. Alt. Haut : W");
+		increment++;
+	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 175,
+	pas * increment++, 0x0026FFFB, "Modif. Alt. Bas : S");
+		increment++;
+}
 
 int		modifcolor(t_data *data, double altitude)
 {

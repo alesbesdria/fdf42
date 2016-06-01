@@ -44,6 +44,8 @@ int			main(int argc, char **argv)
 	data->scene_rot.y = pi;
 	data->scene_rot.z = 0;*/
 
+	ft_bline(data, 820, 0, 820, 1000, 0x0026FFFB);
+
 	data->ptr_mlx = mlx_init();
 	data->ptr_win = mlx_new_window(data->ptr_mlx,
 					data->screen_width, data->screen_height, "FDF Meli 42");
@@ -88,6 +90,8 @@ int			main(int argc, char **argv)
 	data->canvas[data->front_buffer] = (int *) mlx_get_data_addr(
 		data->img[data->front_buffer], &data->bpp, &data->sizeline,
 		&data->endian);
+
+	menu(data);
 
 //	ft_bline(data, 0.0, 0, 100, 100, 0x00FF00FF);
 	render_fdf(data);
