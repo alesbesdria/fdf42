@@ -44,7 +44,7 @@ int			main(int argc, char **argv)
 	data->scene_rot.y = pi;
 	data->scene_rot.z = 0;*/
 
-	ft_bline(data, 820, 0, 820, 1000, 0x0026FFFB);
+	ft_bline(data, 820, 1, 820, 999, 0x0026FFFB);
 
 	data->ptr_mlx = mlx_init();
 	data->ptr_win = mlx_new_window(data->ptr_mlx,
