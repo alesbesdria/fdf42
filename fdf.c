@@ -35,7 +35,7 @@ int			main(int argc, char **argv)
 	data->screen_height = 800;
 	data->screen_width = 1000;
 	data->canvas_height = 800;
-	data->canvas_width = 1000;
+	data->canvas_width = 800;
 	data->coef_elev = 10;
 /*	data->scene_pos.x = 10;
 	data->scene_pos.y = 10;
