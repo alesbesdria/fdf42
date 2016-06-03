@@ -13,6 +13,9 @@ void		menu(t_data *data)
 	pas * increment++, 0X00269DFF, "   M E N U    ");
 		increment++;
 	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 175,
+	pas * increment++, 0X0026FFFB, "Quit : Echap");
+		increment++;
+	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 175,
 	pas * increment++, 0X0026FFFB, "Zoom+ : Souris Avant");
 		increment++;
 	mlx_string_put(data->ptr_mlx, data->ptr_win, data->screen_width - 175,
